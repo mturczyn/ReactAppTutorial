@@ -1,69 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import ShoppingList from './ShoppingList'
+import { TestArea } from "./testArea.js";
+import { setStatelessClockTick } from "./componentLifecycle.js"
 
-class Square extends React.Component {
-    render() {
-      return (
-        <button className="square">
-          {/* TODO */}
-        </button>
-      );
-    }
+let person = {
+  name: "Brendan Eich",
+  hello: function (thing) {
+    console.log(this + " says hello " + thing);
   }
-  
-  class Board extends React.Component {
-    renderSquare(i) {
-      return <ShoppingList />;
-    }
-  
-    render() {
-      const status = 'Next player: X';
-  
-      return (
-        <div>
-          <div className="status">{status}</div>
-          <div className="board-row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-          </div>
-        </div>
-      );
-    }
-  }
-  
-  class Game extends React.Component {
-    render() {
-      return (
-        <div className="game">
-          <div className="game-board">
-            <Board />
-          </div>
-          <div className="game-info">
-            <div>tododododo</div>
-            <ol>{/* TODO */}</ol>
-          </div>
-        </div>
-      );
-    }
-  }
-  
-  // ========================================
-  
-  ReactDOM.render(
-    <Game />,
-    document.getElementById('root')
-  );
-  
+}
+
+let p2 = person
+p2.name = 'chnaged name'
+console.log('person name after change: ' + person.name);
+let p3 = { ...person, name: 'p3 name' }
+console.log('p3 name ' + p3.name);
+console.log('person name' + person.name);
+
+let boundHello = function (thing) { person.hello.call(person, thing) }
+boundHello("world");
+
+let hi = function (thing) { console.log(this + " SAYS HI " + thing) };
+let boundHi = function (thing) { hi.call(person, thing) }
+boundHi("world")
+
+let boundHi2 = hi.bind(person);
+boundHi2('world 2')
+
+setInterval(setStatelessClockTick, 1000);
+
+ReactDOM.render(
+  <TestArea />,
+  document.getElementById('root')
+);
