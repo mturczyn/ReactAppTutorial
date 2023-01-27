@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
 
 /*
 React events are named using camelCase, rather than lowercase.
@@ -24,6 +22,23 @@ function handle(e){
 }
 
 NOTE: Here e is SyntheticEvent (to research).
+
+TODO:
+Passing arguments to event handlers:
+Inside a loop, it is common to want to pass an extra
+parameter to an event handler. For example, if if is the
+row ID, either of the following would work:
+
+<button onClick={(e) => this.deleteRow(id, e)}>
+Delete Row
+</button>
+
+<button onClick={this.deleteRow.bind(this, id)}>
+Delete Row
+</button>
+
+The above two lines are equivalent, and use arrow functions
+and function.prototype.bind respectively.
  */
 
 export class Toggle extends React.Component {
@@ -32,6 +47,7 @@ export class Toggle extends React.Component {
         this.state = { isToggleOn: true };
         // Required if we are passing a function to a event handler,
         // see the comments inside render method.
+        // Without it we would get undefined error.
         // this.handleClick = this.handleClick.bind(this);
     }
 
