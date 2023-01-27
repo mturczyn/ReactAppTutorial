@@ -45,7 +45,7 @@ Then, when we try update UI specifying only one variable:
 
 this.setState({ posts: ... })
 
-It will leave comments in tact, untouched, because they wree not specified.
+It will leave comments in tact, untouched, because they were not specified.
 */
 
 export function setStatelessClockTick() {

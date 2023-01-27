@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { TestArea } from "./testArea.js";
-import { setStatelessClockTick } from "./componentLifecycle.js"
 
 let person = {
   name: "Brendan Eich",
@@ -27,8 +26,6 @@ boundHi("world")
 
 let boundHi2 = hi.bind(person);
 boundHi2('world 2')
-
-setInterval(setStatelessClockTick, 1000);
 
 ReactDOM.render(
   <TestArea />,
