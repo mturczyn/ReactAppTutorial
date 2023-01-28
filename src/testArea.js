@@ -1,6 +1,7 @@
 import React from "react";
 import { Clock, setStatelessClockTick } from "./componentLifecycle.js";
 import { Toggle } from "./events.js";
+import { LoginControl, MailApp } from './conditionalRendering.js'
 
 // The below two components are equivalent from React’s point of view.
 // First one is so called function component.
@@ -43,7 +44,7 @@ export class UserProfile extends React.Component {
                 <Avatar user={this.props.user} />
             </div>
         )
-    } 
+    }
 }
 
 export class TestArea extends React.Component {
@@ -66,6 +67,8 @@ export class TestArea extends React.Component {
                 <UserProfile user={user} description='example user profile' />
                 <Clock />
                 <Toggle />
+                <LoginControl />
+                <MailApp />
             </div>
         )
     }
