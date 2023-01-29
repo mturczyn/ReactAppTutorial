@@ -53,7 +53,7 @@ export function setStatelessClockTick() {
     // console.log(`rendering timer with date ${date}`);
     ReactDOM.render(
         <StatelessClock date={date} />,
-        document.getElementById('rootForTimer')
+        document.getElementById('rootForStatelessClock')
     )
 }
 

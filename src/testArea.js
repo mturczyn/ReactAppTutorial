@@ -2,6 +2,7 @@ import React from "react";
 import { Clock, setStatelessClockTick } from "./componentLifecycle.js";
 import { Toggle } from "./events.js";
 import { LoginControl, MailApp } from './conditionalRendering.js'
+import { DoubledNumbers } from "./listsAndKeys.js";
 
 // The below two components are equivalent from React’s point of view.
 // First one is so called function component.
@@ -60,15 +61,19 @@ export class TestArea extends React.Component {
             name: "Michal",
         }
 
+        const numbers = [1, 2, 3.14, -1001, -100];
+
         return (
             <div>
                 <Welcome name="Michal - function component" />
                 <WelcomeClass name="Michal - class extending React component" />
                 <UserProfile user={user} description='example user profile' />
                 <Clock />
+                <div id="rootForStatelessClock"></div>
                 <Toggle />
                 <LoginControl />
                 <MailApp />
+                <DoubledNumbers numbers={numbers} />
             </div>
         )
     }

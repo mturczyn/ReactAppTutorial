@@ -10,6 +10,9 @@ boundingExamples();
 argsExample();
 
 ReactDOM.render(
-  <TestArea />,
+  <div>
+    <button onClick="location.href='./mailingApp.html';return false;">Open mailing app</button>
+    <TestArea />
+  </div>,
   document.getElementById('root')
 );
