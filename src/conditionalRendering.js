@@ -141,8 +141,6 @@ export class MailApp extends React.Component {
         // {this.state.currentMessage && <MailViewer message={this.state.currentMessage} />}
         return (
             <div>
-                {mb}
-                <MailViewer message={this.state.currentMessage} />
                 <button onClick={this.receiveMessages}>
                     Receive messages
                 </button>
@@ -152,6 +150,8 @@ export class MailApp extends React.Component {
                 <button onClick={this.deleteMessages}>
                     Delete messages
                 </button>
+                {mb}
+                <MailViewer message={this.state.currentMessage} />
             </div>
         )
     }

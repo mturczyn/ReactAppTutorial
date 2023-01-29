@@ -1,7 +1,22 @@
 // Function.prototype.bind()
 // The bind() method creates a new function that, when called, has its
-// this keyword set to the provided value, with a given sequence of 
+// this keyword set to the provided value, with a given sequence of
 // arguments preceding any provided when the new function is called.
+
+/*
+ATTACHING DEBUGGER TO APPLICATION
+So far I have managed to attach debugger in this way:
+- in .vscode/launch.json file we need to set "configurations:url": "http://localhost:3000",
+- run 'npm start'
+- in VS Code go to 'Run and Debug' from Activity Bar on the left side,
+and from the top dropdown select configuration 'Launch Chrome against localhost'
+and press run.
+After this steps debugger should be attached.
+
+# What not worked:
+- running Opera against localhost:3000 (I guess it's because of browser),
+- running different configurations (which in turn just execute 'npm run start' command)
+*/
 
 // Here's exampe of binding this to a function.
 export function boundFunctionsExample() {
@@ -50,4 +65,48 @@ export function anotherExampleOfBoundFunctions() {
     const boundGetX = module.getX.bind(module);
     console.log("Expected: " + someNumber)
     console.log(boundGetX());
+}
+
+export function boundingExamples() {
+    const person = {
+        name: "Michal",
+        sayHi: function (welcoming) {
+            if (this === undefined) {
+                return "this is undefined";
+            }
+            return this.name + ' says ' + welcoming;
+        }
+    }
+
+    let unboundSayHi = person.sayHi;
+    let hi = unboundSayHi("hello");
+    // Expected: this is undefined
+    console.log(hi);
+
+    let boundSayHi = person.sayHi.bind(person);
+    let hibound = boundSayHi("hello");
+    // Expected: Michal says hello
+    console.log(hibound);
+
+    let wrappedBound = boundSayHi.bind({ name: "Not Michal" });
+    let hiWrappedBound = wrappedBound("hello");
+    // Expected: Michal says hello
+    console.log(hiWrappedBound);
+
+    let willItWork = person.sayHi.bind({ name: "Not Michal" });
+    let hiWillItWork = willItWork('hello');
+    // Expected: Not Michal says hello
+    console.log(hiWillItWork);
+}
+
+export function argsExample() {
+    let logFunction = log;
+
+    log(1, 2);
+    console.log(1, 2);
+
+}
+
+function log(...args) {
+    console.log(...args);
 }
