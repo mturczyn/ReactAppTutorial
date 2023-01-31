@@ -50,7 +50,7 @@ It will leave comments in tact, untouched, because they were not specified.
 
 export function setStatelessClockTick() {
     let date = new Date()
-    // console.log(`rendering timer with date ${date}`);
+    console.log(`rendering timer with date ${date}`);
     ReactDOM.render(
         <StatelessClock date={date} />,
         document.getElementById('rootForStatelessClock')

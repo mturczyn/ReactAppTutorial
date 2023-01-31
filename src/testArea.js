@@ -3,6 +3,8 @@ import { Clock, setStatelessClockTick } from "./componentLifecycle.js";
 import { Toggle } from "./events.js";
 import { LoginControl, MailApp } from './conditionalRendering.js'
 import { DoubledNumbers } from "./listsAndKeys.js";
+import { StandardForm } from "./forms.js";
+import { useNavigate } from 'react-router-dom'
 
 // The below two components are equivalent from React’s point of view.
 // First one is so called function component.
@@ -48,33 +50,34 @@ export class UserProfile extends React.Component {
     }
 }
 
-export class TestArea extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
-
-    render() {
-        setInterval(setStatelessClockTick, 1000);
-
-        const user = {
-            avatarUrl: "exampleAvatar.png",
-            name: "Michal",
-        }
-
-        const numbers = [1, 2, 3.14, -1001, -100];
-
-        return (
-            <div>
-                <Welcome name="Michal - function component" />
-                <WelcomeClass name="Michal - class extending React component" />
-                <UserProfile user={user} description='example user profile' />
-                <Clock />
-                <div id="rootForStatelessClock"></div>
-                <Toggle />
-                <LoginControl />
-                <MailApp />
-                <DoubledNumbers numbers={numbers} />
-            </div>
-        )
+export function TestArea(props) {
+    const navigate = useNavigate();
+    const statelessClockTimerId = setInterval(setStatelessClockTick, 1000);
+    const nav = () => {
+        clearInterval(statelessClockTimerId);
+        navigate('MailingApp');
     }
+
+    const user = {
+        avatarUrl: "exampleAvatar.png",
+        name: "Michal",
+    }
+
+    const numbers = [1, 2, 3.14, -1001, -100];
+
+    return (
+        <div>
+            <button onClick={nav}>Open mailing app</button>
+            <Welcome name="Michal - function component" />
+            <WelcomeClass name="Michal - class extending React component" />
+            <UserProfile user={user} description='example user profile' />
+            <Clock />
+            <div id="rootForStatelessClock"></div>
+            <Toggle />
+            <LoginControl />
+            <MailApp />
+            <DoubledNumbers numbers={numbers} />
+            <StandardForm />
+        </div>
+    )
 }
