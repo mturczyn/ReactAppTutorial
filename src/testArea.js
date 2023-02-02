@@ -3,7 +3,7 @@ import { Clock, setStatelessClockTick } from "./componentLifecycle.js";
 import { Toggle } from "./events.js";
 import { LoginControl, MailApp } from './conditionalRendering.js'
 import { DoubledNumbers } from "./listsAndKeys.js";
-import { StandardForm } from "./forms.js";
+import FormsTestArea from "./forms.js";
 import { useNavigate } from 'react-router-dom'
 
 // The below two components are equivalent from React’s point of view.
@@ -77,7 +77,7 @@ export function TestArea(props) {
             <LoginControl />
             <MailApp />
             <DoubledNumbers numbers={numbers} />
-            <StandardForm />
+            <FormsTestArea />
         </div>
     )
 }

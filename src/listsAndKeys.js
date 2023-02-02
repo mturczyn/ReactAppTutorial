@@ -25,7 +25,7 @@ export function DoubledNumbers(props) {
     // Moreover keys must be inly unique within
     // their siblings, so they don't have to be 
     // globally unique among all lists.
-    // Also, it is not accessiblt inside component
+    // Also, it is not accessible inside component
     // through props.key.
     return (
         <div>
