@@ -110,3 +110,23 @@ export function argsExample() {
 function log(...args) {
     console.log(...args);
 }
+
+export function computedPropertiesExample() {
+    let name = 'age'
+    let person = {
+        name: 'Michal',
+        [name]: 24,
+    }
+
+    console.log(person.name)
+    console.log(person[name])
+    console.log(person.age)
+
+    let person2 = {
+        name: 'Mateusz'
+    }
+    person2[name] = 30
+    console.log(person2.name)
+    console.log(person2[name])
+    console.log(person2.age)
+}

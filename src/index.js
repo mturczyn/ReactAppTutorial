@@ -2,7 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { TestArea } from "./testArea.js";
-import { boundFunctionsExample, anotherExampleOfBoundFunctions, boundingExamples, argsExample } from './languageSpecific.js'
+import {
+  boundFunctionsExample,
+  anotherExampleOfBoundFunctions,
+  boundingExamples,
+  argsExample,
+  computedPropertiesExample
+} from './languageSpecific.js'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { MailApp } from './MailingApp/MailAppComponent'
 
@@ -10,6 +16,7 @@ boundFunctionsExample();
 anotherExampleOfBoundFunctions();
 boundingExamples();
 argsExample();
+computedPropertiesExample();
 
 ReactDOM.render(
   <div>

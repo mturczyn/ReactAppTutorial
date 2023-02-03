@@ -2,16 +2,14 @@ import React from "react";
 
 function StandardForm(props) {
     return (
-        <div>
+        <form>
             <h3>Standard form</h3>
-            <form>
-                <label>
-                    Name:
-                    <input type="text" name="name" />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
-        </div>
+            <label>
+                Name:
+                <input type="text" name="name" />
+            </label>
+            <input type="submit" value="Submit" />
+        </form>
     )
 }
 
@@ -44,16 +42,14 @@ class ControlledForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <form onSubmit={this.handleSubmit}>
                 <h3>Controlled form</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Name:
-                        <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
-            </div>
+                <label>
+                    Name:
+                    <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
         )
     }
 }
@@ -79,16 +75,14 @@ class EssayForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <form onSubmit={this.handleSubmit}>
                 <h3>Essay controlled form</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Essay:
-                        <textarea value={this.state.value} onChange={this.handleChange} />
-                    </label>
-                    <input type='submit' value='Submit' />
-                </form>
-            </div>
+                <label>
+                    Essay:
+                    <textarea value={this.state.value} onChange={this.handleChange} />
+                </label>
+                <input type='submit' value='Submit' />
+            </form>
         )
     }
 }
@@ -112,21 +106,85 @@ class FormWithSelect extends React.Component {
 
     render() {
         return (
-            <div>
+            <form onSubmit={this.handleSubmit}>
                 <h3>Form with select element</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Pick your favorite flavor:
-                        <select value={this.state.value} onChange={this.handleChange}>
-                            <option value="grapefruit">Grapefruit</option>
-                            <option value="coconut">Coconut</option>
-                        </select>
-                    </label>
-                    <input type='submit' value='Submit' />
-                </form>
-            </div>
+                <label>
+                    Pick your favorite flavor:
+                    <select value={this.state.value} onChange={this.handleChange}>
+                        <option value="grapefruit">Grapefruit</option>
+                        <option value="coconut">Coconut</option>
+                    </select>
+                </label>
+                <input type='submit' value='Submit' />
+            </form>
         )
     }
+}
+
+// File input 
+// <input type="file" />
+// is UNCONTROLLED component, because it's value is readonly.
+
+class MultipleInputForm extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isGoing: true,
+            numberOfGuests: 2,
+        }
+
+        this.handleInputChange = this.handleInputChange.bind(this)
+    }
+
+    handleInputChange(event) {
+        const target = event.target
+        const value = target.type === 'checkbox'
+            ? target.checked
+            : target.value
+        const name = target.name
+
+        // This will set either isGoing proeprty or numberOfGuests
+        // We could also extract names to variables and use them conveniently.
+        this.setState({
+            [name]: value
+        })
+    }
+
+    render() {
+        return (
+            <form>
+                <h3>Multiple inputs form</h3>
+                <label>
+                    Is going:
+                    <input
+                        name='isGoing'
+                        type='checkbox'
+                        checked={this.state.isGoing}
+                        onChange={this.handleInputChange} />
+                </label>
+                <br />
+                <label>
+                    Number of guests:
+                    <input
+                        name='numberOfGuests'
+                        type='number'
+                        value={this.state.numberOfGuests}
+                        onChange={this.handleInputChange} />
+                </label>
+            </form>
+        )
+    }
+}
+
+function NullValueOnControlledInput(props) {
+    return (
+        <form>
+            <h3>Null value in controlled input</h3>
+            <p>First input is defined to value, second is set to null</p>
+            <input value="hi" />
+            <input value={null} />
+        </form>
+    )
 }
 
 function FormsTestArea(props) {
@@ -137,6 +195,8 @@ function FormsTestArea(props) {
             <ControlledForm />
             <EssayForm />
             <FormWithSelect />
+            <MultipleInputForm />
+            <NullValueOnControlledInput />
         </div>
     )
 }
