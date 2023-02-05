@@ -5,6 +5,8 @@ import { LoginControl, MailApp } from './conditionalRendering.js'
 import { DoubledNumbers } from "./listsAndKeys.js";
 import FormsTestArea from "./forms.js";
 import { useNavigate } from 'react-router-dom'
+import Calculator from "./liftingStateUp.js";
+import CompositionAndInheritanceTestArea from "./compositionAndInheritance.js";
 
 // The below two components are equivalent from React’s point of view.
 // First one is so called function component.
@@ -78,6 +80,8 @@ export function TestArea(props) {
             <MailApp />
             <DoubledNumbers numbers={numbers} />
             <FormsTestArea />
+            <Calculator />
+            <CompositionAndInheritanceTestArea />
         </div>
     )
 }

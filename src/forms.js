@@ -79,9 +79,9 @@ class EssayForm extends React.Component {
                 <h3>Essay controlled form</h3>
                 <label>
                     Essay:
-                    <textarea value={this.state.value} onChange={this.handleChange} />
+                    <textarea style={{ margin: '0 10px' }} value={this.state.value} onChange={this.handleChange} />
                 </label>
-                <input type='submit' value='Submit' />
+                <input style={{ margin: '20px 0' }} type='submit' value='Submit' />
             </form>
         )
     }
@@ -133,7 +133,13 @@ class MultipleInputForm extends React.Component {
             numberOfGuests: 2,
         }
 
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this)
+    }
+
+    handleSubmit(event) {
+        alert(JSON.stringify(this.state))
+        event.preventDefault()
     }
 
     handleInputChange(event) {
@@ -152,7 +158,7 @@ class MultipleInputForm extends React.Component {
 
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <h3>Multiple inputs form</h3>
                 <label>
                     Is going:
@@ -171,6 +177,8 @@ class MultipleInputForm extends React.Component {
                         value={this.state.numberOfGuests}
                         onChange={this.handleInputChange} />
                 </label>
+                <br />
+                <input type='submit' value='Submit' />
             </form>
         )
     }

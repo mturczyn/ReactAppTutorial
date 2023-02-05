@@ -13,3 +13,31 @@ form {
     padding: 10px;
     margin: 10px;
 }
+
+.FancyBorder {
+    border: 2px solid black;
+}
+
+.FancyBorder-green {
+    border: 2px solid green;
+}
+
+.FancyBorder-red {
+    border: 2px solid red;
+}
+
+.FancyBorder-blue {
+    border: 2px solid blue;
+}
+
+.Dialog-title::first-letter {
+    font-size: 3rem;
+    font-weight: bold;
+    color: brown;
+}
+
+.Dialog-message::first-letter {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(46, 42, 165);
+}
