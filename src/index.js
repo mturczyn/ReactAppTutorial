@@ -13,6 +13,8 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { MailApp } from './MailingApp/MailAppComponent'
 import { ExampleDataTable } from './dataTableWithFragments'
 import { AccessibilityTestArea } from './accessibility'
+import MouseAndPointerEventsTestArea from './mouseAndPointersEvents'
+import DocumentTitle from 'react-document-title'
 
 boundFunctionsExample()
 anotherExampleOfBoundFunctions()
@@ -21,7 +23,7 @@ argsExample()
 computedPropertiesExample()
 
 ReactDOM.render(
-  <div>
+  <DocumentTitle title='Learning React'>
     <BrowserRouter>
       <Routes>
         <Route
@@ -37,11 +39,15 @@ ReactDOM.render(
           element={<AccessibilityTestArea />}
         />
         <Route
+          path='mouseAndPointersEvents'
+          element={<MouseAndPointerEventsTestArea />}
+        />
+        <Route
           path='*'
           element={<TestArea />}
         />
       </Routes>
     </BrowserRouter>
-  </div>,
+  </DocumentTitle>,
   document.getElementById('root')
 )
