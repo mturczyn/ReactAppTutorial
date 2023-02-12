@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 /*
 ** Do not modify state directly **
@@ -49,11 +49,11 @@ It will leave comments in tact, untouched, because they were not specified.
 */
 
 export function setStatelessClockTick() {
-    let date = new Date()
-    ReactDOM.render(
-        <StatelessClock date={date} />,
-        document.getElementById('rootForStatelessClock')
-    )
+  let date = new Date()
+  ReactDOM.render(
+    <StatelessClock date={date} />,
+    document.getElementById('rootForStatelessClock')
+  )
 }
 
 // below component is stateless and is rendered once, and does not update
@@ -61,44 +61,48 @@ export function setStatelessClockTick() {
 // That's why we need external timer to drive updates, but that would require
 // implementing timer everywhere clock is needed.
 export class StatelessClock extends React.Component {
-    render() {
-        return <div>
-            <h1>The time is:</h1>
-            <h2>{this.props.date.toLocaleTimeString()}</h2>
-            <p>stateless</p>
-        </div>
-    }
+  render() {
+    return (
+      <div>
+        <h1>The time is:</h1>
+        <h2>{this.props.date.toLocaleTimeString()}</h2>
+        <p>stateless</p>
+      </div>
+    )
+  }
 }
 
 // This is stateful component, it manages its state through state property
 // and setState method.
 // It does not require any additional code for UI updates and can be used as <Clock />.
 export class Clock extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { date: new Date() };
-    }
+  constructor(props) {
+    super(props)
+    this.state = { date: new Date() }
+  }
 
-    tick() {
-        this.setState({ date: new Date() });
-    }
+  tick() {
+    this.setState({ date: new Date() })
+  }
 
-    // Useful method that is called after rendering component, we can
-    // set initial state and other stuff related to component.
-    componentDidMount() {
-        this.timerId = setInterval(() => this.tick(), 1000);
-    }
+  // Useful method that is called after rendering component, we can
+  // set initial state and other stuff related to component.
+  componentDidMount() {
+    this.timerId = setInterval(() => this.tick(), 1000)
+  }
 
-    // Method that is used to cleanup used resources.
-    componentWillUnmount() {
-        clearInterval(this.timerId);
-    }
+  // Method that is used to cleanup used resources.
+  componentWillUnmount() {
+    clearInterval(this.timerId)
+  }
 
-    render() {
-        return <div>
-            <h1>The time is:</h1>
-            <h2>{this.state.date.toLocaleTimeString()}</h2>
-            <p>stateful</p>
-        </div>
-    }
+  render() {
+    return (
+      <div>
+        <h1>The time is:</h1>
+        <h2>{this.state.date.toLocaleTimeString()}</h2>
+        <p>stateful</p>
+      </div>
+    )
+  }
 }

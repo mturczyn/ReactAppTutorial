@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 /*
 React events are named using camelCase, rather than lowercase.
@@ -42,29 +42,29 @@ and function.prototype.bind respectively.
  */
 
 export class Toggle extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { isToggleOn: true };
-        // Required if we are passing a function to a event handler,
-        // see the comments inside render method.
-        // Without it we would get undefined error.
-        // this.handleClick = this.handleClick.bind(this);
-    }
+  constructor(props) {
+    super(props)
+    this.state = { isToggleOn: true }
+    // Required if we are passing a function to a event handler,
+    // see the comments inside render method.
+    // Without it we would get undefined error.
+    // this.handleClick = this.handleClick.bind(this);
+  }
 
-    handleClick(e) {
-        this.setState(prevState => ({ isToggleOn: !prevState.isToggleOn }));
-        //e.preventDefault();
-    }
+  handleClick(e) {
+    this.setState(prevState => ({ isToggleOn: !prevState.isToggleOn }))
+    //e.preventDefault();
+  }
 
-    render() {
-        return (
-            // Arrow syntax causes small overhead, but syntatically is most elegant.
-            // On the other hand we can use commented version, but we must remember to bind funciton
-            // in constructor.
-            //<button onClick={this.handleClick}>
-            <button onClick={() => this.handleClick()}>
-                {this.state.isToggleOn ? "ON" : "OFF"}
-            </button>
-        )
-    }
+  render() {
+    return (
+      // Arrow syntax causes small overhead, but syntatically is most elegant.
+      // On the other hand we can use commented version, but we must remember to bind funciton
+      // in constructor.
+      //<button onClick={this.handleClick}>
+      <button onClick={() => this.handleClick()}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    )
+  }
 }
