@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Clock, setStatelessClockTick } from "./componentLifecycle.js";
 import { Toggle } from "./events.js";
 import { LoginControl, MailApp } from './conditionalRendering.js'
@@ -7,6 +7,8 @@ import FormsTestArea from "./forms.js";
 import { useNavigate } from 'react-router-dom'
 import Calculator from "./liftingStateUp.js";
 import CompositionAndInheritanceTestArea from "./compositionAndInheritance.js";
+import { TestTreeSelect } from "./CustomTreeSelect/TestTreeSelect";
+import ControlledTreeSelect from "./CustomTreeSelect/ControlledTreeSelect.js";
 
 // The below two components are equivalent from React’s point of view.
 // First one is so called function component.
@@ -53,9 +55,14 @@ export class UserProfile extends React.Component {
 }
 
 export function TestArea(props) {
+    const [statelessClockTimerId, setStatelessClockTimerId] = useState(0);
+    const startStatelessClock = () => {
+        setStatelessClockTimerId(setInterval(setStatelessClockTick, 1000));
+    }
+
     const navigate = useNavigate();
-    const statelessClockTimerId = setInterval(setStatelessClockTick, 1000);
     const nav = () => {
+        console.log('>> clearing interval: ', statelessClockTimerId)
         clearInterval(statelessClockTimerId);
         navigate('MailingApp');
     }
@@ -74,7 +81,11 @@ export function TestArea(props) {
             <WelcomeClass name="Michal - class extending React component" />
             <UserProfile user={user} description='example user profile' />
             <Clock />
-            <div id="rootForStatelessClock"></div>
+            <div id="rootForStatelessClock">
+                <button onClick={startStatelessClock}>
+                    Start stateless clock
+                </button>
+            </div>
             <Toggle />
             <LoginControl />
             <MailApp />
@@ -82,6 +93,7 @@ export function TestArea(props) {
             <FormsTestArea />
             <Calculator />
             <CompositionAndInheritanceTestArea />
+            {/* <ControlledTreeSelect /> */}
         </div>
     )
 }
