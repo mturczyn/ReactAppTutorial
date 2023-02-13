@@ -15,6 +15,7 @@ import { ExampleDataTable } from './dataTableWithFragments'
 import { AccessibilityTestArea } from './accessibility'
 import MouseAndPointerEventsTestArea from './mouseAndPointersEvents'
 import DocumentTitle from 'react-document-title'
+import ComponentWithLazyLoadedImportOfChild from './codeSplitting/codeSplittingTestArea'
 
 boundFunctionsExample()
 anotherExampleOfBoundFunctions()
@@ -41,6 +42,10 @@ ReactDOM.render(
         <Route
           path='mouseAndPointersEvents'
           element={<MouseAndPointerEventsTestArea />}
+        />
+        <Route
+          path='codeSplitting'
+          element={<ComponentWithLazyLoadedImportOfChild />}
         />
         <Route
           path='*'
