@@ -63,17 +63,20 @@ export class UserProfile extends React.Component {
   }
 }
 
-export function TestArea(props) {
+export function TestAreaMainPage(props) {
   const [statelessClockTimerId, setStatelessClockTimerId] = useState(0)
   const startStatelessClock = () => {
     setStatelessClockTimerId(setInterval(setStatelessClockTick, 1000))
   }
 
   const navigate = useNavigate()
-  const nav = () => {
-    console.log('>> clearing interval: ', statelessClockTimerId)
-    clearInterval(statelessClockTimerId)
-    navigate('MailingApp')
+  const nav = path => {
+    if (path === 'MailingApp') {
+      console.log('>> clearing interval: ', statelessClockTimerId)
+      clearInterval(statelessClockTimerId)
+    }
+
+    navigate(path)
   }
 
   const user = {
@@ -83,9 +86,27 @@ export function TestArea(props) {
 
   const numbers = [1, 2, 3.14, -1001, -100]
 
+  const createNavigationBar = () => {
+    if (!props.availablePages) {
+      return null
+    }
+    return (
+      <div className='container-with-border'>
+        {props.availablePages.map(x => (
+          <button
+            style={{ padding: '0.5rem', margin: '0.5rem' }}
+            onClick={() => nav(x.path)}
+          >
+            Open {x.path}
+          </button>
+        ))}
+      </div>
+    )
+  }
+
   return (
     <div>
-      <button onClick={nav}>Open mailing app</button>
+      {createNavigationBar()}
       <Welcome name='Michal - function component' />
       <WelcomeClass name='Michal - class extending React component' />
       <UserProfile

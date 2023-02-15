@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import { TestArea } from './testArea.js'
+import { TestAreaMainPage } from './testArea.js'
 import {
   boundFunctionsExample,
   anotherExampleOfBoundFunctions,
@@ -35,39 +35,49 @@ boundingExamples()
 argsExample()
 computedPropertiesExample()
 
+const availablePages = [
+  {
+    path: 'DataTable',
+    element: <ExampleDataTable size={200} />,
+  },
+  {
+    path: 'MailingApp',
+    element: <MailApp />,
+  },
+  {
+    path: 'Accessibility',
+    element: <AccessibilityTestArea />,
+  },
+  {
+    path: 'mouseAndPointersEvents',
+    element: <MouseAndPointerEventsTestArea />,
+  },
+  {
+    path: 'codeSplitting',
+    element: <ComponentWithLazyLoadedImportOfChild />,
+  },
+  {
+    path: 'contextPassing',
+    element: <ComponentWithContext />,
+  },
+]
+
+const mainPage = {
+  path: '*',
+  element: <TestAreaMainPage availablePages={availablePages} />,
+}
+
 ReactDOM.render(
   <DocumentTitle title='Learning React'>
     <BrowserRouter>
       <SuspenseWrapper>
         <Routes>
-          <Route
-            path='DataTable'
-            element={<ExampleDataTable size={200} />}
-          />
-          <Route
-            path='MailingApp'
-            element={<MailApp />}
-          />
-          <Route
-            path='Accessibility'
-            element={<AccessibilityTestArea />}
-          />
-          <Route
-            path='mouseAndPointersEvents'
-            element={<MouseAndPointerEventsTestArea />}
-          />
-          <Route
-            path='codeSplitting'
-            element={<ComponentWithLazyLoadedImportOfChild />}
-          />
-          <Route
-            path='contextPassing'
-            element={<ComponentWithContext />}
-          />
-          <Route
-            path='*'
-            element={<TestArea />}
-          />
+          {[...availablePages, mainPage].map(x => (
+            <Route
+              path={x.path}
+              element={x.element}
+            />
+          ))}
         </Routes>
       </SuspenseWrapper>
     </BrowserRouter>
