@@ -26,9 +26,15 @@ function that handles the submission of the form and has access to the data that
 form. The standard way to achieve this is with a technique called "CONTROLLED COMPONENTS".
 */
 
-// Here is above form, but controlled.
-// Now React component state is source of truth for form.
-// It is totally driven with state of below ConrolledForm.
+/**
+ * Here is above form, but controlled.
+ */
+/**
+ * Now React component state is source of truth for form.
+ */
+/**
+ * It is totally driven with state of below ConrolledForm.
+ */
 class ControlledForm extends React.Component {
   constructor(props) {
     super(props)
@@ -149,9 +155,15 @@ class FormWithSelect extends React.Component {
   }
 }
 
-// File input
-// <input type="file" />
-// is UNCONTROLLED component, because it's value is readonly.
+/**
+ * File input
+ */
+/**
+ * <input type="file" />
+ */
+/**
+ * is UNCONTROLLED component, because it's value is readonly.
+ */
 
 class MultipleInputForm extends React.Component {
   constructor(props) {
@@ -175,8 +187,12 @@ class MultipleInputForm extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
 
-    // This will set either isGoing proeprty or numberOfGuests
-    // We could also extract names to variables and use them conveniently.
+    /**
+     * This will set either isGoing proeprty or numberOfGuests
+     */
+    /**
+     * We could also extract names to variables and use them conveniently.
+     */
     this.setState({
       [name]: value,
     })

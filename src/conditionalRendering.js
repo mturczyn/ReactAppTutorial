@@ -49,14 +49,28 @@ export class LoginControl extends React.Component {
   }
 
   render() {
-    // let button;
-    // if (this.state.isLoggedIn) {
-    //     button = <LogoutButton onClick={this.handleLogoutClick} />;
-    // } else {
-    //     button = <LoginButton onClick={this.handleLoginClick} />;
-    // }
+    /**
+     * let button;
+     */
+    /**
+     * if (this.state.isLoggedIn) {
+     */
+    /**
+     *     button = <LogoutButton onClick={this.handleLogoutClick} />;
+     */
+    /**
+     * } else {
+     */
+    /**
+     *     button = <LoginButton onClick={this.handleLoginClick} />;
+     */
+    /**
+     * }
+     */
 
-    // We can rewrie above with ternary operator.
+    /**
+     * We can rewrie above with ternary operator.
+     */
     let button = this.state.isLoggedIn ? (
       <LogoutButton onClick={this.handleLogoutClick} />
     ) : (
@@ -72,14 +86,18 @@ export class LoginControl extends React.Component {
   }
 }
 
-// Conditional rendering: using && operator
+/**
+ * Conditional rendering: using && operator
+ */
 function Mailbox(props) {
   const unreadMessages = props.unreadMessages
   return (
     <div>
       <h1>Hello</h1>
-      {unreadMessages.length > 0 && ( // <===========
-        <h2>You have {unreadMessages.length} unread messages.</h2>
+      {unreadMessages.length > 0 && (
+        /**
+         * <===========
+         */ <h2>You have {unreadMessages.length} unread messages.</h2>
       )}
     </div>
   )
@@ -135,11 +153,21 @@ export class MailApp extends React.Component {
   render() {
     const mb = <Mailbox unreadMessages={this.state.unreadMessages} />
 
-    // MailViewer component initially was added in the way shown below,
-    // using && operator for conditional rendering, but we added this
-    // check inside a component, if message is null, then we return null
-    // from render to prevent component from rendering.
-    // {this.state.currentMessage && <MailViewer message={this.state.currentMessage} />}
+    /**
+     * MailViewer component initially was added in the way shown below,
+     */
+    /**
+     * using && operator for conditional rendering, but we added this
+     */
+    /**
+     * check inside a component, if message is null, then we return null
+     */
+    /**
+     * from render to prevent component from rendering.
+     */
+    /**
+     * {this.state.currentMessage && <MailViewer message={this.state.currentMessage} />}
+     */
     return (
       <div>
         <button onClick={this.receiveMessages}>Receive messages</button>

@@ -10,8 +10,12 @@ import CompositionAndInheritanceTestArea from './compositionAndInheritance.js'
 import { TestTreeSelect } from './CustomTreeSelect/TestTreeSelect'
 import ControlledTreeSelect from './CustomTreeSelect/ControlledTreeSelect.js'
 
-// The below two components are equivalent from React’s point of view.
-// First one is so called function component.
+/**
+ * The below two components are equivalent from React’s point of view.
+ */
+/**
+ * First one is so called function component.
+ */
 export function Welcome(props) {
   return <h1>Hello, {props.name}</h1>
 }
@@ -22,8 +26,12 @@ export class WelcomeClass extends React.Component {
   }
 }
 
-// React component names should start with uppercase, as React engine treats lowercase starting elements to be HTML tags.
-// Below element will never be rendered correctly by React.
+/**
+ * React component names should start with uppercase, as React engine treats lowercase starting elements to be HTML tags.
+ */
+/**
+ * Below element will never be rendered correctly by React.
+ */
 export class wrongNamed extends React.Component {
   render() {
     return <p>should not be possible</p>

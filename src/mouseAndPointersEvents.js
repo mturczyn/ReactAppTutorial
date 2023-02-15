@@ -32,7 +32,9 @@ class OuterClickExample extends React.Component {
   }
 
   onClickOutsideHandler(event) {
-    // console.log(event.target)
+    /**
+     * console.log(event.target)
+     */
     if (
       this.state.isOpen &&
       !this.toggleContainer.current.contains(event.target)
@@ -90,22 +92,38 @@ class OuterClickExampleWithBlur extends React.Component {
   }
 
   onBlurHandler() {
-    // Below lines supposed to help sloving issue that
-    // focus event triggers before blur and clearing timeout does not
-    // work and list is closed anyway.
-    // console.log(this.toggleContainer.current)
-    // console.log('on blur handler fired, closing popup, setting timeout')
+    /**
+     * Below lines supposed to help sloving issue that
+     */
+    /**
+     * focus event triggers before blur and clearing timeout does not
+     */
+    /**
+     * work and list is closed anyway.
+     */
+    /**
+     * console.log(this.toggleContainer.current)
+     */
+    /**
+     * console.log('on blur handler fired, closing popup, setting timeout')
+     */
     this.timeoutId = setTimeout(() => {
       this.setState({
         isOpen: false,
       })
     }, 1000)
-    // console.log('set timeoutId =', this.timeoutId)
+    /**
+     * console.log('set timeoutId =', this.timeoutId)
+     */
   }
 
   onFocusHandler(event) {
-    // console.log('component got focus, clearing timeout')
-    // console.log('timeoutId =', this.timeoutId)
+    /**
+     * console.log('component got focus, clearing timeout')
+     */
+    /**
+     * console.log('timeoutId =', this.timeoutId)
+     */
     clearTimeout(this.timeoutId)
   }
 

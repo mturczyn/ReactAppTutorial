@@ -56,10 +56,18 @@ export function setStatelessClockTick() {
   )
 }
 
-// below component is stateless and is rendered once, and does not update
-// So it will display time when it was rendered and never update it.
-// That's why we need external timer to drive updates, but that would require
-// implementing timer everywhere clock is needed.
+/**
+ * below component is stateless and is rendered once, and does not update
+ */
+/**
+ * So it will display time when it was rendered and never update it.
+ */
+/**
+ * That's why we need external timer to drive updates, but that would require
+ */
+/**
+ * implementing timer everywhere clock is needed.
+ */
 export class StatelessClock extends React.Component {
   render() {
     return (
@@ -72,9 +80,15 @@ export class StatelessClock extends React.Component {
   }
 }
 
-// This is stateful component, it manages its state through state property
-// and setState method.
-// It does not require any additional code for UI updates and can be used as <Clock />.
+/**
+ * This is stateful component, it manages its state through state property
+ */
+/**
+ * and setState method.
+ */
+/**
+ * It does not require any additional code for UI updates and can be used as <Clock />.
+ */
 export class Clock extends React.Component {
   constructor(props) {
     super(props)
@@ -85,13 +99,19 @@ export class Clock extends React.Component {
     this.setState({ date: new Date() })
   }
 
-  // Useful method that is called after rendering component, we can
-  // set initial state and other stuff related to component.
+  /**
+   * Useful method that is called after rendering component, we can
+   */
+  /**
+   * set initial state and other stuff related to component.
+   */
   componentDidMount() {
     this.timerId = setInterval(() => this.tick(), 1000)
   }
 
-  // Method that is used to cleanup used resources.
+  /**
+   * Method that is used to cleanup used resources.
+   */
   componentWillUnmount() {
     clearInterval(this.timerId)
   }

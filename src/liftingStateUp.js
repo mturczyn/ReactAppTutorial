@@ -12,10 +12,18 @@ const scaleNames = {
   f: 'Fahrenheit',
 }
 
-// In below class commented lines refer to state
-// before "lifting state up".
-// Such change is also known as making this component "controlled",
-// just as we did with forms.
+/**
+ * In below class commented lines refer to state
+ */
+/**
+ * before "lifting state up".
+ */
+/**
+ * Such change is also known as making this component "controlled",
+ */
+/**
+ * just as we did with forms.
+ */
 class TemperatureInput extends React.Component {
   constructor(props) {
     super(props)
@@ -24,12 +32,16 @@ class TemperatureInput extends React.Component {
   }
 
   handleChange(event) {
-    // this.setState({ temperature: event.target.value })
+    /**
+     * this.setState({ temperature: event.target.value })
+     */
     this.props.onTemperatureChange(event.target.value)
   }
 
   render() {
-    // const temperature = this.state.temperature
+    /**
+     * const temperature = this.state.temperature
+     */
     const temperature = this.props.temperature
     const scale = this.props.scale
     return (

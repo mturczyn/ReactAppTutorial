@@ -1,21 +1,45 @@
 export function DoubledNumbers(props) {
   const listItems = props.numbers
     .map(n => n * 2)
-    // React uses key attribute to track items in
-    // lists, so it's important to define them uniquely.
-    // When ID is not provided on handled data, hadny
-    // solution an be to use index in collection,
-    // which is default behaviour in React, but
-    // is not recommended, ex.:
+    /**
+     * React uses key attribute to track items in
+     */
+    /**
+     * lists, so it's important to define them uniquely.
+     */
+    /**
+     * When ID is not provided on handled data, hadny
+     */
+    /**
+     * solution an be to use index in collection,
+     */
+    /**
+     * which is default behaviour in React, but
+     */
+    /**
+     * is not recommended, ex.:
+     */
     //
-    // .map((n, index) => (
-    //     <li key={index}>{n}</li>
-    // ));
+    /**
+     * .map((n, index) => (
+     */
+    /**
+     *     <li key={index}>{n}</li>
+     */
+    /**
+     * ));
+     */
     .map(n => <li key={n}>{n}</li>)
 
-  // Keys only make sense in the context of the surrounding array.
-  // In below example we set key attribute directly on the NumberDescription
-  // component, not in <li> element inside, which is correct way.
+  /**
+   * Keys only make sense in the context of the surrounding array.
+   */
+  /**
+   * In below example we set key attribute directly on the NumberDescription
+   */
+  /**
+   * component, not in <li> element inside, which is correct way.
+   */
   const descriptions = props.numbers
     .map(n => n * 2)
     .map(n => (
@@ -25,11 +49,21 @@ export function DoubledNumbers(props) {
       />
     ))
 
-  // Moreover keys must be inly unique within
-  // their siblings, so they don't have to be
-  // globally unique among all lists.
-  // Also, it is not accessible inside component
-  // through props.key.
+  /**
+   * Moreover keys must be inly unique within
+   */
+  /**
+   * their siblings, so they don't have to be
+   */
+  /**
+   * globally unique among all lists.
+   */
+  /**
+   * Also, it is not accessible inside component
+   */
+  /**
+   * through props.key.
+   */
   return (
     <div>
       <h2>Doubled numbers</h2>

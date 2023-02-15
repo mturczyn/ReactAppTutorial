@@ -1,24 +1,26 @@
-// Function.prototype.bind()
-// The bind() method creates a new function that, when called, has its
-// this keyword set to the provided value, with a given sequence of
-// arguments preceding any provided when the new function is called.
+/**
+ * Function.prototype.bind()
+ * The bind() method creates a new function that, when called, has its
+ * this keyword set to the provided value, with a given sequence of
+ * arguments preceding any provided when the new function is called.
+ *
+ * ATTACHING DEBUGGER TO APPLICATION
+ * So far I have managed to attach debugger in this way:
+ * - in .vscode/launch.json file we need to set "configurations:url": "http://localhost:3000",
+ * - run 'npm start'
+ * - in VS Code go to 'Run and Debug' from Activity Bar on the left side,
+ * and from the top dropdown select configuration 'Launch Chrome against localhost'
+ * and press run.
+ * After this steps debugger should be attached.
+ *
+ * # What not worked:
+ * - running Opera against localhost:3000 (I guess it's because of browser),
+ * - running different configurations (which in turn just execute 'npm run start' command)
+ */
 
-/*
-ATTACHING DEBUGGER TO APPLICATION
-So far I have managed to attach debugger in this way:
-- in .vscode/launch.json file we need to set "configurations:url": "http://localhost:3000",
-- run 'npm start'
-- in VS Code go to 'Run and Debug' from Activity Bar on the left side,
-and from the top dropdown select configuration 'Launch Chrome against localhost'
-and press run.
-After this steps debugger should be attached.
-
-# What not worked:
-- running Opera against localhost:3000 (I guess it's because of browser),
-- running different configurations (which in turn just execute 'npm run start' command)
-*/
-
-// Here's exampe of binding this to a function.
+/**
+ * Here's exampe of binding this to a function.
+ */
 export function boundFunctionsExample() {
   let person = {
     name: 'Brendan Eich',
@@ -56,9 +58,11 @@ export function anotherExampleOfBoundFunctions() {
   const module = {
     x: someNumber,
     getX: function () {
-      // In strict mode, we need this ? operator, as this would end
-      // in error, without strict mode this is replaced by global
-      // object and undefined is the result.
+      /**
+       * In strict mode, we need this ? operator, as this would end
+       * in error, without strict mode this is replaced by global
+       * object and undefined is the result.
+       */
       return this?.x
     },
   }
