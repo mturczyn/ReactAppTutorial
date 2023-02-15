@@ -27,6 +27,10 @@ export default function ComponentWithLazyLoadedImportOfChild() {
     React.useState(false)
   return (
     <div>
+      <p>
+        First toggleable component is lazy loaded, but does not have error
+        ahndling in caase server becomes unavialble.
+      </p>
       <button onClick={() => setShowComponentState(x => !x)}>
         Toggle component
       </button>
@@ -35,6 +39,11 @@ export default function ComponentWithLazyLoadedImportOfChild() {
           <ExampleComponent />
         </SuspenseWrapper>
       )}
+      <p>
+        Second, on the other hand, has this error handling (ErrorBoundary
+        component), that handles error when server becomes unavailable and the
+        component is not fetched.
+      </p>
       <button onClick={() => setShowNonExistingComponentState(x => !x)}>
         Toggle error component
       </button>

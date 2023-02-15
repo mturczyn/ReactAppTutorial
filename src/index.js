@@ -16,6 +16,7 @@ import { AccessibilityTestArea } from './accessibility'
 import DocumentTitle from 'react-document-title'
 import SuspenseWrapper from './codeSplitting/suspenseWrappers'
 import ComponentWithContext from './passingContext/deeplyNestedComponents'
+import SectionedHeaders from './passingContext/headersSections'
 
 /**
  * One of the good ways to start and maintain code splitting is
@@ -59,6 +60,10 @@ const availablePages = [
   {
     path: 'contextPassing',
     element: <ComponentWithContext />,
+  },
+  {
+    path: 'SectionedHeaders',
+    element: <SectionedHeaders />,
   },
 ]
 

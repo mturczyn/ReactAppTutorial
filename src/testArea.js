@@ -91,7 +91,7 @@ export function TestAreaMainPage(props) {
       return null
     }
     return (
-      <div className='container-with-border'>
+      <div className='container-with-border main-nav-bar'>
         {props.availablePages.map(x => (
           <button
             style={{ padding: '0.5rem', margin: '0.5rem' }}

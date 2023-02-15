@@ -47,3 +47,16 @@ form {
   margin: 2rem;
   border: 1px solid black;
 }
+
+.main-nav-bar {
+  background-color: aqua;
+}
+
+.main-nav-bar button {
+  background-color: rgb(243, 143, 143);
+  font-weight: 700;
+  width: 10rem;
+  height: 3rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
