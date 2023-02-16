@@ -17,6 +17,7 @@ import DocumentTitle from 'react-document-title'
 import SuspenseWrapper from './codeSplitting/suspenseWrappers'
 import ComponentWithContext from './passingContext/deeplyNestedComponents'
 import SectionedHeaders from './passingContext/headersSections'
+import ErrorWidget from './errorBoundaries/errorBoundaryExample'
 
 /**
  * One of the good ways to start and maintain code splitting is
@@ -64,6 +65,10 @@ const availablePages = [
   {
     path: 'SectionedHeaders',
     element: <SectionedHeaders />,
+  },
+  {
+    path: 'ErrorWidget',
+    element: <ErrorWidget />,
   },
 ]
 
