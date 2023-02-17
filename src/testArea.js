@@ -52,15 +52,22 @@ export class Avatar extends React.Component {
   }
 }
 
-export class UserProfile extends React.Component {
-  render() {
-    return (
-      <div style={{ border: '5px solid red' }}>
-        <h2>{this.props.description}</h2>
-        <Avatar user={this.props.user} />
-      </div>
-    )
+export function UserProfile(props) {
+  const [numberOfAvatars, setNumberOfAvatars] = React.useState(1)
+  const avatars = []
+  for (let i = 0; i < numberOfAvatars; i++) {
+    avatars.push(<Avatar user={props.user} />)
   }
+  return (
+    <div style={{ border: '5px solid red' }}>
+      <h2>{props.description}</h2>
+      <button onClick={() => setNumberOfAvatars(x => x + 1)}>Add avatar</button>
+      <button onClick={() => setNumberOfAvatars(x => x - 1)}>
+        Remove avatar
+      </button>
+      {avatars}
+    </div>
+  )
 }
 
 export function TestAreaMainPage(props) {

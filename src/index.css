@@ -60,3 +60,11 @@ form {
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.fancy-button {
+  background-color: aqua;
+}
+
+.fancy-button:focus {
+  background-color: lightgoldenrodyellow;
+}
