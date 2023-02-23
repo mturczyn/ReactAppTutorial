@@ -16,6 +16,34 @@ const dataSource = new DataSource()
  *
  * Whereas a component transforms props into UI, a higher order component
  * transforms a component into another component.
+ *
+ * CONVENTION
+ * It is good to define custom display name for the component like
+ *
+ * function withEnhancement(WrappedComponent) {
+ *   class WithEnhancement extends React.Component {...}
+ *   WithEnhancement.displayName = `WithEnhancement(${getDisplayName(WrappedComponent)})`
+ * }
+ *
+ * PASS UNRELATED PROPS
+ * HOCs should pass through not used props:
+ *
+ * render() {
+ *   const {extraProp, ...passThroughProps} = this.props
+ *   const injectedProp = someStateOrInstanceMethod
+ *   return (
+ *     <WrappedComponent injectedProp={injectedProp}
+ *       {...passThroughProps}
+ *     />
+ *   )
+ * }
+ *
+ * CAVEAT: DONT USE HOC AS RESULT OF RENDER METHOD
+ * It is discouraged to do
+ * render() {
+ *   const Hoc = enhance(SomeComponent)
+ *   return <Hoc/>
+ * }
  */
 
 function CommentListWithoutUpdates(props) {
@@ -74,6 +102,11 @@ class CommentList extends React.Component {
   }
 }
 
+/**
+ * This allows to defer concrete implementation of
+ * data source to below HOC, where we specify what data source
+ * we will use and what methods we will use to update.
+ */
 function withSubscription(WrappedComoponent, selectData) {
   return class extends React.Component {
     constructor(props) {
