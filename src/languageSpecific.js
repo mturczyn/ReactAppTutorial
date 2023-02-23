@@ -109,8 +109,6 @@ export function boundingExamples() {
 }
 
 export function argsExample() {
-  let logFunction = log
-
   log(1, 2)
   console.log(1, 2)
 }

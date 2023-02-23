@@ -6,7 +6,7 @@ export default class DataSource {
 
   getComments() {
     const comments = []
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 1; i++) {
       comments.push({
         author: 'Michal',
         text: 'this is awesome',

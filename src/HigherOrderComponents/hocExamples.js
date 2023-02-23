@@ -18,6 +18,19 @@ const dataSource = new DataSource()
  * transforms a component into another component.
  */
 
+function CommentListWithoutUpdates(props) {
+  return (
+    <div className='container-with-border'>
+      {props.data.map(x => (
+        <div style={{ backgroundColor: '#FFAAAA' }}>
+          <label>{x.author}</label>
+          <p>{x.text}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 class CommentList extends React.Component {
   constructor(props) {
     super(props)
@@ -80,6 +93,9 @@ function withSubscription(WrappedComoponent, selectData) {
     }
 
     handleChange(comment) {
+      if (!this.props.enabled) {
+        return
+      }
       this.setState(ps => {
         return { data: [...ps.data, comment] }
       })
@@ -96,7 +112,7 @@ function withSubscription(WrappedComoponent, selectData) {
   }
 }
 
-const CommentListHoc = withSubscription(CommentList, dataSource =>
+const CommentListHoc = withSubscription(CommentListWithoutUpdates, dataSource =>
   dataSource.getComments()
 )
 
