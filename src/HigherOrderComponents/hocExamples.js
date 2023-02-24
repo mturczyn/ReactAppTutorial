@@ -44,6 +44,11 @@ const dataSource = new DataSource()
  *   const Hoc = enhance(SomeComponent)
  *   return <Hoc/>
  * }
+ *
+ * And as result of render method is compared using ===
+ * operator to determine if the component should re-render,
+ * it will cause component to re-render every time, as each <Hoc>
+ * will be different, independently even of the same state.
  */
 
 function CommentListWithoutUpdates(props) {

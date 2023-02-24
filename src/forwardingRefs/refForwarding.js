@@ -32,7 +32,7 @@ function RefForwardingToDirectChild() {
 }
 
 /**
- * HOC - Higher order component
+ * HOC - Higher order component - more on that in separate page focused on HOCs.
  */
 function hocLogPropsInvalid(WrappedComponent) {
   class LogProps extends React.Component {
@@ -48,9 +48,10 @@ function hocLogPropsInvalid(WrappedComponent) {
   return LogProps
 }
 
+const HocLogButtonPropsInvalid = hocLogPropsInvalid(FancyButton)
+
 function RefForwardingToHocChildInvalid() {
   const ref = createRef()
-  const HocLogButtonProps = hocLogPropsInvalid(FancyButton)
   return (
     <div className='container-with-border'>
       <p>
@@ -64,7 +65,11 @@ function RefForwardingToHocChildInvalid() {
       <button onClick={() => ref.current.focus()}>
         Redirect focus to other button
       </button>
-      <HocLogButtonProps ref={ref}>HOC: Click me!</HocLogButtonProps>
+      {/* Here ref will point to LogProps instead of the inner FancyButton component.
+      This means we can't call e.g. ref.current.focus() */}
+      <HocLogButtonPropsInvalid ref={ref}>
+        HOC: Click me!
+      </HocLogButtonPropsInvalid>
     </div>
   )
 }
@@ -86,12 +91,18 @@ function hocLogPropsCorrect(WrappedComponent) {
       )
     }
   }
-  return LogProps
+  return forwardRef((props, ref) => (
+    <LogProps
+      {...props}
+      forwardRef={ref}
+    />
+  ))
 }
+
+const HocLogButtonPropsValid = hocLogPropsCorrect(FancyButton)
 
 function RefForwardingToHocChildCorrect() {
   const ref = createRef()
-  const HocLogButtonProps = hocLogPropsCorrect(FancyButton)
   return (
     <div
       className='container-with-border'
@@ -107,7 +118,7 @@ function RefForwardingToHocChildCorrect() {
       <button onClick={() => ref.current.focus()}>
         Redirect focus to other button
       </button>
-      <HocLogButtonProps forwardRef={ref}>HOC: Click me!</HocLogButtonProps>
+      <HocLogButtonPropsValid ref={ref}>HOC: Click me!</HocLogButtonPropsValid>
     </div>
   )
 }
