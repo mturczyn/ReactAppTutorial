@@ -20,6 +20,7 @@ import SectionedHeaders from './passingContext/headersSections'
 import ErrorWidget from './errorBoundaries/errorBoundaryExample'
 import RefForwardingTestArea from './forwardingRefs/refForwarding'
 import HocLogButtonProps from './HigherOrderComponents/hocExamples'
+import JsxInDepth from './JsxInDepth/jsxInDepth'
 
 /**
  * One of the good ways to start and maintain code splitting is
@@ -79,6 +80,10 @@ const availablePages = [
   {
     path: 'HocLogButtonProps',
     element: <HocLogButtonProps />,
+  },
+  {
+    path: 'JsxInDepth',
+    element: <JsxInDepth />,
   },
 ]
 
