@@ -76,6 +76,10 @@ function Repeat(props) {
   return <div>{items}</div>
 }
 
+function BoldString(props) {
+  return <b>{String(props.value)}</b>
+}
+
 export default function JsxInDepth() {
   return (
     <div>
@@ -83,6 +87,14 @@ export default function JsxInDepth() {
       <ChoosingTypeAtRuntime />
       <h3>ListOfTenThings</h3>
       <ListOfTenThings />
+      <div className='container-with-border'>
+        <h3>String() method over .toString() method</h3>
+        <p>
+          String is more powerful function as it correctly handles{' '}
+          <BoldString value={null} /> and <BoldString /> (it should be
+          undefined), which acutally were generated using that function.
+        </p>
+      </div>
     </div>
   )
 }
