@@ -5,7 +5,7 @@ export function DataTable(props) {
         <>
           <dt
             style={{
-              backgroundColor: idx % 2 == 0 ? '#88DDDD' : 'lightgray',
+              backgroundColor: idx % 2 === 0 ? '#88DDDD' : 'lightgray',
               padding: '10px',
             }}
           >
@@ -13,7 +13,7 @@ export function DataTable(props) {
           </dt>
           <dd
             style={{
-              backgroundColor: idx % 2 == 0 ? '#AAFFFF' : '#AAAAAA',
+              backgroundColor: idx % 2 === 0 ? '#AAFFFF' : '#AAAAAA',
               padding: '10px',
             }}
           >
