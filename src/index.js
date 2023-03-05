@@ -21,6 +21,7 @@ import ErrorWidget from './errorBoundaries/errorBoundaryExample'
 import RefForwardingTestArea from './forwardingRefs/refForwarding'
 import HocLogButtonProps from './HigherOrderComponents/hocExamples'
 import JsxInDepth from './JsxInDepth/jsxInDepth'
+import LoggingControlPanel from './portals/portalsTestArea'
 
 /**
  * One of the good ways to start and maintain code splitting is
@@ -84,6 +85,10 @@ const availablePages = [
   {
     path: 'JsxInDepth',
     element: <JsxInDepth />,
+  },
+  {
+    path: 'LoggingControlPanel',
+    element: <LoggingControlPanel />,
   },
 ]
 
