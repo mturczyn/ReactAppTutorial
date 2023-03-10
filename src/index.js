@@ -25,6 +25,7 @@ import LoggingControlPanel from './portals/portalsTestArea'
 import ProfilerTestArea from './profiling/profilerTestArea'
 import ReactWithoutJsxNotes from './reactWithoutJsxNotes'
 import OptimizingPerformanceNotes from './optimizingPerformanceNotes'
+import ReconcillationNotes from './reconcillationNotes'
 
 /**
  * One of the good ways to start and maintain code splitting is
@@ -104,6 +105,10 @@ const availablePages = [
   {
     path: 'OptimizingPerformanceNotes',
     element: <OptimizingPerformanceNotes />,
+  },
+  {
+    path: 'ReconcillationNotes',
+    element: <ReconcillationNotes />,
   },
 ]
 
