@@ -9,7 +9,7 @@ export default function ProfilerTestArea() {
     <div>
       <Profiler
         id='SomeComponent'
-        onRender={onRenderCallback}
+        onRender={onRenderProfilerCallback}
       >
         <SomeComponent header='Michal is the best' />
       </Profiler>
@@ -17,7 +17,7 @@ export default function ProfilerTestArea() {
   )
 }
 
-function onRenderCallback(
+export function onRenderProfilerCallback(
   id, // the "id" prop of the Profiler tree that has just committed
   phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
   actualDuration, // time spent rendering the committed update
@@ -28,7 +28,15 @@ function onRenderCallback(
 ) {
   // Aggregate or log render timings...
   const logOnRenderCallback = (obj, what) =>
-    console.log('>>>', 'PROFILER CALLBACK', what, '=', JSON.stringify(obj))
+    console.log(
+      '>>>',
+      'PROFILER',
+      id,
+      'CALLBACK',
+      what,
+      '=',
+      JSON.stringify(obj)
+    )
   logOnRenderCallback(id, 'id')
   logOnRenderCallback(phase, 'phase')
   logOnRenderCallback(actualDuration, 'actualDuration')
