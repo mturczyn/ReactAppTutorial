@@ -7,7 +7,6 @@ import FormsTestArea from './forms.js'
 import { useNavigate } from 'react-router-dom'
 import Calculator from './liftingStateUp.js'
 import CompositionAndInheritanceTestArea from './compositionAndInheritance.js'
-import { TestTreeSelect } from './CustomTreeSelect/TestTreeSelect'
 import ControlledTreeSelect from './CustomTreeSelect/ControlledTreeSelect.js'
 
 /**
