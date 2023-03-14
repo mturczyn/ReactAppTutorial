@@ -18,7 +18,7 @@ import SuspenseWrapper from './codeSplitting/suspenseWrappers'
 import ComponentWithContext from './passingContext/deeplyNestedComponents'
 import SectionedHeaders from './passingContext/headersSections'
 import ErrorWidget from './errorBoundaries/errorBoundaryExample'
-import RefForwardingTestArea from './forwardingRefs/refForwarding'
+import RefForwardingTestArea from './reactRefs/refForwarding'
 import HocLogButtonProps from './HigherOrderComponents/hocExamples'
 import JsxInDepth from './JsxInDepth/jsxInDepth'
 import LoggingControlPanel from './portals/portalsTestArea'
@@ -26,6 +26,8 @@ import ProfilerTestArea from './profiling/profilerTestArea'
 import ReactWithoutJsxNotes from './reactWithoutJsxNotes'
 import OptimizingPerformanceNotes from './optimizingPerformanceNotes'
 import ReconcillationNotes from './reconcillationNotes'
+import StopwatchWithINterval from './reactRefs/stopwatchWithINterval'
+import RenderPropsTestArea from './renderProps/renderPropsTestArea'
 
 /**
  * One of the good ways to start and maintain code splitting is
@@ -109,6 +111,14 @@ const availablePages = [
   {
     path: 'ReconcillationNotes',
     element: <ReconcillationNotes />,
+  },
+  {
+    path: 'StopwatchWithINterval',
+    element: <StopwatchWithINterval />,
+  },
+  {
+    path: 'RenderPropsTestArea',
+    element: <RenderPropsTestArea />,
   },
 ]
 
