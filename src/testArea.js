@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 import { Clock, setStatelessClockTick } from './componentLifecycle.js'
 import { Toggle } from './events.js'
 import { LoginControl, MailApp } from './conditionalRendering.js'
@@ -70,16 +70,16 @@ export function UserProfile(props) {
 }
 
 export function TestAreaMainPage(props) {
-  const [statelessClockTimerId, setStatelessClockTimerId] = useState(0)
+  const timerIdRef = useRef(null)
   const startStatelessClock = () => {
-    setStatelessClockTimerId(setInterval(setStatelessClockTick, 1000))
+    timerIdRef.current = setInterval(setStatelessClockTick, 1000)
   }
 
   const navigate = useNavigate()
   const nav = path => {
-    if (path === 'MailingApp') {
-      console.log('>> clearing interval: ', statelessClockTimerId)
-      clearInterval(statelessClockTimerId)
+    if (timerIdRef.current) {
+      console.log('>> clearing interval: ', timerIdRef.current)
+      clearInterval(timerIdRef.current)
     }
 
     navigate(path)
