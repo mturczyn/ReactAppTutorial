@@ -115,19 +115,19 @@ class EssayForm extends React.Component {
   }
 }
 
-class FormWithSelect extends React.Component {
-  constructor(props) {
+class FormWithSelect extends React.Component<any, { value: string }> {
+  constructor(props: any) {
     super(props)
     this.state = { value: 'coconut' }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(event) {
+  handleChange(event: any) {
     this.setState({ value: event.target.value })
   }
 
-  handleSubmit(event) {
+  handleSubmit(event: any) {
     alert('Picked option is: ' + this.state.value)
     event.preventDefault()
   }
@@ -165,8 +165,11 @@ class FormWithSelect extends React.Component {
  * is UNCONTROLLED component, because it's value is readonly.
  */
 
-class MultipleInputForm extends React.Component {
-  constructor(props) {
+class MultipleInputForm extends React.Component<
+  any,
+  { isGoing: boolean; numberOfGuests: string }
+> {
+  constructor(props: any) {
     super(props)
     this.state = {
       isGoing: true,
@@ -177,12 +180,12 @@ class MultipleInputForm extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
-  handleSubmit(event) {
+  handleSubmit(event: any) {
     alert(JSON.stringify(this.state))
     event.preventDefault()
   }
 
-  handleInputChange(event) {
+  handleInputChange(event: any) {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
@@ -231,7 +234,7 @@ class MultipleInputForm extends React.Component {
   }
 }
 
-function NullValueOnControlledInput(props) {
+function NullValueOnControlledInput(props: any) {
   return (
     <form>
       <h3>Null value in controlled input</h3>
@@ -242,7 +245,7 @@ function NullValueOnControlledInput(props) {
   )
 }
 
-function FormsTestArea(props) {
+function FormsTestArea(props: any) {
   return (
     <div>
       <h1>Forms testing area</h1>

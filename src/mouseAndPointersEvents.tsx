@@ -6,8 +6,8 @@ Below class depends on click events to manipulate the page.
 It shows dropdown with options depending on 'isOpen' property,
 which changes on click events inside browser (on 'widnow' DOM object).
 */
-class OuterClickExample extends React.Component {
-  constructor(props) {
+class OuterClickExample extends React.Component<any, { isOpen: boolean }> {
+  constructor(props: any) {
     super(props)
 
     this.state = { isOpen: false }
@@ -16,6 +16,8 @@ class OuterClickExample extends React.Component {
     this.onClickHandler = this.onClickHandler.bind(this)
     this.onClickOutsideHandler = this.onClickOutsideHandler.bind(this)
   }
+
+  toggleContainer: any
 
   componentDidMount() {
     window.addEventListener('click', this.onClickOutsideHandler)
@@ -27,16 +29,16 @@ class OuterClickExample extends React.Component {
 
   onClickHandler() {
     this.setState(currentState => ({
-      isOpen: !currentState.isOpen,
+      isOpen: !(currentState as any).isOpen,
     }))
   }
 
-  onClickOutsideHandler(event) {
+  onClickOutsideHandler(event: any) {
     /**
      * console.log(event.target)
      */
     if (
-      this.state.isOpen &&
+      (this.state as any).isOpen &&
       !this.toggleContainer.current.contains(event.target)
     ) {
       console.log('target not in list, closing popup')
@@ -74,7 +76,10 @@ class OuterClickExample extends React.Component {
   }
 }
 
-class OuterClickExampleWithBlur extends React.Component {
+class OuterClickExampleWithBlur extends React.Component<
+  any,
+  { isOpen: boolean }
+> {
   constructor(props: any) {
     super(props)
     this.toggleContainer = React.createRef()
@@ -85,9 +90,12 @@ class OuterClickExampleWithBlur extends React.Component {
     this.onFocusHandler = this.onFocusHandler.bind(this)
   }
 
+  timeoutId: any
+  toggleContainer: any
+
   onClickHandler() {
     this.setState(currentState => ({
-      isOpen: !currentState.isOpen,
+      isOpen: !(currentState as any).isOpen,
     }))
   }
 
