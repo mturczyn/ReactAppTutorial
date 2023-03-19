@@ -75,7 +75,7 @@ class OuterClickExample extends React.Component {
 }
 
 class OuterClickExampleWithBlur extends React.Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props)
     this.toggleContainer = React.createRef()
     this.state = { isOpen: false }
@@ -117,7 +117,7 @@ class OuterClickExampleWithBlur extends React.Component {
      */
   }
 
-  onFocusHandler(event) {
+  onFocusHandler(event: any) {
     /**
      * console.log('component got focus, clearing timeout')
      */

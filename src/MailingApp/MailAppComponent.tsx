@@ -8,7 +8,7 @@ function UserGreeting(props: any) {
   )
 }
 
-function GuestGreeting(props) {
+function GuestGreeting(props: any) {
   return (
     <div>
       Please, <b>GTFO</b>
@@ -16,7 +16,7 @@ function GuestGreeting(props) {
   )
 }
 
-function Greeting(props) {
+function Greeting(props: any) {
   if (props.isLoggedIn) {
     return UserGreeting(props)
   }
@@ -24,16 +24,16 @@ function Greeting(props) {
   return GuestGreeting(props)
 }
 
-function LoginButton(props) {
+function LoginButton(props: any) {
   return <button onClick={props.onClick}>Login</button>
 }
 
-function LogoutButton(props) {
+function LogoutButton(props: any) {
   return <button onClick={props.onClick}>Logout</button>
 }
 
 export class LoginControl extends React.Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props)
     this.handleLoginClick = this.handleLoginClick.bind(this)
     this.handleLogoutClick = this.handleLogoutClick.bind(this)
@@ -71,7 +71,7 @@ export class LoginControl extends React.Component {
     /**
      * We can rewrie above with ternary operator.
      */
-    let button = this.state.isLoggedIn ? (
+    let button = (this.state as { isLoggedIn: boolean }).isLoggedIn ? (
       <LogoutButton onClick={this.handleLogoutClick} />
     ) : (
       <LoginButton onClick={this.handleLoginClick} />
@@ -79,7 +79,9 @@ export class LoginControl extends React.Component {
 
     return (
       <div>
-        <Greeting isLoggedIn={this.state.isLoggedIn} />
+        <Greeting
+          isLoggedIn={(this.state as { isLoggedIn: boolean }).isLoggedIn}
+        />
         {button}
       </div>
     )
@@ -89,7 +91,7 @@ export class LoginControl extends React.Component {
 /**
  * Conditional rendering: using && operator
  */
-function Mailbox(props) {
+function Mailbox(props: any) {
   const unreadMessages = props.unreadMessages
   return (
     <div>
@@ -101,7 +103,7 @@ function Mailbox(props) {
   )
 }
 
-function MailViewer(props) {
+function MailViewer(props: any) {
   const [showRawState, setShowRawState] = React.useState(false)
   if (!props.message) {
     return null
@@ -152,12 +154,12 @@ function MailViewer(props) {
   )
 }
 
-function MailList(props) {
+function MailList(props: any) {
   const unreadMessages = props.unreadMessages
 
   return (
     <ul>
-      {unreadMessages.map(m => (
+      {unreadMessages.map((m: any) => (
         <li key={m.title}>
           <h4>{m.title}</h4>
           <p>To add open on click</p>
@@ -168,7 +170,7 @@ function MailList(props) {
 }
 
 export class MailApp extends React.Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props)
     this.state = { unreadMessages: [] }
     this.deleteMessages = this.deleteMessages.bind(this)
@@ -178,7 +180,9 @@ export class MailApp extends React.Component {
 
   showMessage() {
     this.setState(prevState => {
-      let message = prevState.unreadMessages.pop()
+      let message = (
+        prevState as { unreadMessages: any[] }
+      ).unreadMessages.pop()
       return { currentMessage: message }
     })
   }
@@ -195,7 +199,12 @@ export class MailApp extends React.Component {
             content: JSON.stringify(data),
             ...data,
           }
-          return { unreadMessages: [...prevState.unreadMessages, newMessage] }
+          return {
+            unreadMessages: [
+              ...(prevState as { unreadMessages: any[] }).unreadMessages,
+              newMessage,
+            ],
+          }
         })
       )
   }
@@ -206,16 +215,26 @@ export class MailApp extends React.Component {
 
   render() {
     return (
-      <div class='row'>
-        <div class='column'>
+      <div className='row'>
+        <div className='column'>
           <button onClick={this.receiveMessages}>Receive messages</button>
           <button onClick={this.showMessage}>Show message</button>
           <button onClick={this.deleteMessages}>Delete messages</button>
-          <Mailbox unreadMessages={this.state.unreadMessages} />
-          <MailViewer message={this.state.currentMessage} />
+          <Mailbox
+            unreadMessages={
+              (this.state as { unreadMessages: any[] }).unreadMessages
+            }
+          />
+          <MailViewer
+            message={(this.state as { currentMessage: any[] }).currentMessage}
+          />
         </div>
-        <div class='column'>
-          <MailList unreadMessages={this.state.unreadMessages} />
+        <div className='column'>
+          <MailList
+            unreadMessages={
+              (this.state as { unreadMessages: any[] }).unreadMessages
+            }
+          />
         </div>
       </div>
     )

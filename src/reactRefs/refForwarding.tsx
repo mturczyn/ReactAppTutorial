@@ -9,7 +9,7 @@ import React, { forwardRef, createRef } from 'react'
  * with forwardRef React function.
  * Ref forwarding also can be used with class components.
  */
-const FancyButton = forwardRef((props, ref) => (
+const FancyButton = forwardRef((props: any, ref: any) => (
   <button
     ref={ref}
     className='fancy-button'
@@ -23,7 +23,7 @@ function RefForwardingToDirectChild() {
 
   return (
     <div>
-      <button onClick={() => ref.current.focus()}>
+      <button onClick={() => (ref.current as any).focus()}>
         Redirect focus to other button
       </button>
       <FancyButton ref={ref}>Click me!</FancyButton>
@@ -34,10 +34,12 @@ function RefForwardingToDirectChild() {
 /**
  * HOC - Higher order component - more on that in separate page focused on HOCs.
  */
-function hocLogPropsInvalid(WrappedComponent) {
+function hocLogPropsInvalid(WrappedComponent: any): any {
   class LogProps extends React.Component {
-    componentDidMount(prevProps) {
-      console.log('old props:', prevProps)
+    componentDidMount() {
+      // After enabling TypeScript, it turned out this method does
+      // not have prevProps params.
+      //console.log('old props:', prevProps)
       console.log('new props:', this.props)
     }
 
@@ -62,7 +64,7 @@ function RefForwardingToHocChildInvalid() {
         This uses only simple ref forwarding used in usual components and will
         result in error!
       </p>
-      <button onClick={() => ref.current.focus()}>
+      <button onClick={() => (ref.current as any).focus()}>
         Redirect focus to other button
       </button>
       {/* Here ref will point to LogProps instead of the inner FancyButton component.
@@ -74,15 +76,15 @@ function RefForwardingToHocChildInvalid() {
   )
 }
 
-function hocLogPropsCorrect(WrappedComponent) {
+function hocLogPropsCorrect(WrappedComponent: any) {
   class LogProps extends React.Component {
-    componentDidMount(prevProps) {
-      console.log('old props:', prevProps)
+    componentDidMount() {
+      //console.log('old props:', prevProps)
       console.log('new props:', this.props)
     }
 
     render() {
-      const { forwardRef, ...rest } = this.props
+      const { forwardRef, ...rest } = this.props as { forwardRef: any }
       return (
         <WrappedComponent
           ref={forwardRef}
@@ -91,7 +93,7 @@ function hocLogPropsCorrect(WrappedComponent) {
       )
     }
   }
-  return forwardRef((props, ref) => (
+  return forwardRef<any, any>((props, ref) => (
     <LogProps
       {...props}
       forwardRef={ref}
@@ -115,7 +117,7 @@ function RefForwardingToHocChildCorrect() {
       <p style={{ color: 'lightgreen' }}>
         This is correctly passed ref with forwarding.
       </p>
-      <button onClick={() => ref.current.focus()}>
+      <button onClick={() => (ref.current as any).focus()}>
         Redirect focus to other button
       </button>
       <HocLogButtonPropsValid ref={ref}>HOC: Click me!</HocLogButtonPropsValid>

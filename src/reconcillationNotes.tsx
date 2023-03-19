@@ -3,14 +3,14 @@ import { Profiler, useState } from 'react'
 import { onRenderProfilerCallback } from './profiling/profilerTestArea'
 
 function ProfiledReconcillation() {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState<any[]>([])
   const [insertAtStart, setInsertAtStart] = useState(false)
 
   return (
     <div>
       <button
         onClick={() =>
-          setItems(x =>
+          setItems((x: any[]) =>
             insertAtStart ? [CreateUUID(), ...x] : [...x, CreateUUID()]
           )
         }
@@ -58,12 +58,12 @@ function ProfiledReconcillation() {
   )
 }
 
-function ListItem(props) {
+function ListItem(props: any) {
   console.log('>>>', 'rendering LIST ITEM')
   return <li key={props.id}>{props.content}</li>
 }
 
-function ListItemWithoutKey(props) {
+function ListItemWithoutKey(props: any) {
   console.log('>>>', 'rendering LIST ITEM WITHOUT KEY')
   return <li>{props.content}</li>
 }

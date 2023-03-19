@@ -9,14 +9,14 @@ export default function RenderPropsTestArea() {
   )
 }
 
-class MouseTracker extends React.Component {
-  constructor(props) {
+class MouseTracker extends React.Component<any, { x: number; y: number }> {
+  constructor(props: any) {
     super(props)
     this.handleMouseMove = this.handleMouseMove.bind(this)
     this.state = { x: 0, y: 0 }
   }
 
-  handleMouseMove(event) {
+  handleMouseMove(event: { clientX: number; clientY: number }) {
     this.setState({
       x: event.clientX,
       y: event.clientY,
@@ -40,14 +40,14 @@ class MouseTracker extends React.Component {
 
 // The problem: how can we use this behavior in other component?
 // Let's try to tackle that by refactoring above code.
-class Mouse extends React.Component {
-  constructor(props) {
+class Mouse extends React.Component<any, { x: number; y: number }> {
+  constructor(props: any) {
     super(props)
     this.handleMouseMove = this.handleMouseMove.bind(this)
     this.state = { x: 0, y: 0 }
   }
 
-  handleMouseMove(event) {
+  handleMouseMove(event: { clientX: number; clientY: number }) {
     this.setState({
       x: event.clientX,
       y: event.clientY,
@@ -69,8 +69,8 @@ class Mouse extends React.Component {
   }
 }
 
-function Dog(props) {
-  const imgRef = useRef(null)
+function Dog(props: any) {
+  const imgRef = useRef<any>(null)
   const left = props.mouse.x - (imgRef.current?.width ?? 0) / 2
   const top = props.mouse.y - (imgRef.current?.height ?? 0) / 2
   return (
@@ -90,7 +90,7 @@ function Dog(props) {
 function DogMouseTracker() {
   return (
     <div>
-      <Mouse render={mouse => <Dog mouse={mouse} />} />
+      <Mouse render={(mouse: any) => <Dog mouse={mouse} />} />
     </div>
   )
 }

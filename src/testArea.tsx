@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 import { Clock, setStatelessClockTick } from './componentLifecycle.js'
 import { Toggle } from './events.js'
 import { LoginControl, MailApp } from './conditionalRendering.js'
@@ -7,7 +7,6 @@ import FormsTestArea from './forms.js'
 import { useNavigate } from 'react-router-dom'
 import Calculator from './liftingStateUp.js'
 import CompositionAndInheritanceTestArea from './compositionAndInheritance.js'
-import ControlledTreeSelect from './CustomTreeSelect/ControlledTreeSelect.js'
 
 /**
  * The below two components are equivalent from React’s point of view.
@@ -15,13 +14,13 @@ import ControlledTreeSelect from './CustomTreeSelect/ControlledTreeSelect.js'
 /**
  * First one is so called function component.
  */
-export function Welcome(props) {
+export function Welcome(props: any) {
   return <h1>Hello, {props.name}</h1>
 }
 
-export class WelcomeClass extends React.Component {
+export class WelcomeClass extends React.Component<{ name: string }> {
   render() {
-    return <h1> Hello, {this.props.name}</h1>
+    return <h1> Hello, {(this.props as { name: string }).name}</h1>
   }
 }
 
@@ -37,21 +36,27 @@ export class wrongNamed extends React.Component {
   }
 }
 
-export class Avatar extends React.Component {
+export class Avatar extends React.Component<{
+  user: { name: string; avatarUrl: string }
+}> {
   render() {
     return (
-      <div align='center'>
+      <div>
         <img
+          alt='This is user'
           height='100rem'
-          src={this.props.user.avatarUrl}
+          src={(this.props as { user: { avatarUrl: string } }).user.avatarUrl}
         />
-        <p>This is: {this.props.user.name}</p>
+        <p>This is: {(this.props as { user: { name: string } }).user.name}</p>
       </div>
     )
   }
 }
 
-export function UserProfile(props) {
+export function UserProfile(props: {
+  user: { name: string; avatarUrl: string }
+  description: string
+}) {
   const [numberOfAvatars, setNumberOfAvatars] = React.useState(1)
   const avatars = []
   for (let i = 0; i < numberOfAvatars; i++) {
@@ -69,17 +74,19 @@ export function UserProfile(props) {
   )
 }
 
-export function TestAreaMainPage(props) {
-  const [statelessClockTimerId, setStatelessClockTimerId] = useState(0)
+export function TestAreaMainPage(props: any) {
+  const timerIdRef = useRef<any>(null)
+
   const startStatelessClock = () => {
-    setStatelessClockTimerId(setInterval(setStatelessClockTick, 1000))
+    console.log('>>> clearing interval: ', timerIdRef)
+    timerIdRef.current = setInterval(setStatelessClockTick, 1000)
   }
 
   const navigate = useNavigate()
-  const nav = path => {
-    if (path === 'MailingApp') {
-      console.log('>> clearing interval: ', statelessClockTimerId)
-      clearInterval(statelessClockTimerId)
+  const nav = (path: string) => {
+    if (timerIdRef.current) {
+      console.log('>>> clearing interval: ', timerIdRef)
+      clearInterval(timerIdRef.current)
     }
 
     navigate(path)
@@ -98,7 +105,7 @@ export function TestAreaMainPage(props) {
     }
     return (
       <div className='container-with-border main-nav-bar'>
-        {props.availablePages.map(x => (
+        {props.availablePages.map((x: any) => (
           <button
             style={{ padding: '0.5rem', margin: '0.5rem' }}
             onClick={() => nav(x.path)}
