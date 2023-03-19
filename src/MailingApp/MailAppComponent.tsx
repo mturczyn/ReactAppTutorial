@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UserGreeting(props) {
+function UserGreeting(props: any) {
   return (
     <div>
       <b>Welcome!</b>
